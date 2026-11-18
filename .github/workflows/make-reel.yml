@@ -1,0 +1,28 @@
+name: Make social reel (from the newest Empire Maps Short)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q pillow
+      - name: Make the reel
+        run: python make_reel.py
+      - name: Put the reel on the 'reels' branch
+        run: |
+          cd out
+          git init -q -b reels
+          git add .
+          git -c user.name=social-bot -c user.email=social-bot@users.noreply.github.com commit -qm "reel $(date -u +%F-%H%M)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" reels
