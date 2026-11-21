@@ -69,7 +69,7 @@ meta = {
     "title": script.get("title", ""),
     "youtube_url": yt,
     "caption": f"{script.get('title', '')}\n\n▶ Watch more empire maps on YouTube: {HANDLE}\n\n#history #maps #empire #historymaps {tags}\n\nMap borders: historical-basemaps (A. Ourednik). Narration: AI voice.",
-    "fb_description": f"{script.get('title', '')}\n\n▶ More maps on YouTube: https://youtube.com/{HANDLE}\nThis video on YouTube: {yt}\n\n#history #maps #empire\n\nMap borders: historical-basemaps (A. Ourednik). Narration: AI voice.",
+    "fb_description": f"▶ Full video on YouTube: {yt}\n\n{script.get('title', '')}\n\n🔔 Subscribe for a new empire map every day: https://youtube.com/{HANDLE}?sub_confirmation=1\n\n#history #maps #empire\n\nMap borders: historical-basemaps (A. Ourednik). Narration: AI voice.",
 }
 json.dump(meta, open("out/meta.json", "w"), indent=1, ensure_ascii=False)
 print(json.dumps(meta, indent=1, ensure_ascii=False))
